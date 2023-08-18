@@ -1,3 +1,5 @@
+//File loads the jobs directory
+
 import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
 
 export async function load({ fetch, params }) {

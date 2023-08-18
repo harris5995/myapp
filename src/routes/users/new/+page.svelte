@@ -1,13 +1,19 @@
+<!-- This file is also the webpage for 'Register' in the Navbar -->
+
+<!-- Contains the functions requires to create a new user -->
+
 <script>
     import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
     import { goto } from '$app/navigation';
-    import { authenticateUser } from './../../../utils/auth.js';
+    import { authenticateUser } from './../../../lib/auth.js'
     let formErrors = {};
   
+    //After signing up, redirects to /jobs/new
     function postSignUp() {
       goto('/jobs/new');
     }
-  
+    
+    //Creates a new user
     async function createUser(evt) {
       evt.preventDefault()
   
@@ -23,7 +29,7 @@
         passwordConfirm: evt.target['password-confirmation'].value
       };
   
-      const resp = await fetch(PUBLIC_BACKEND_BASE_URL + '/api/collections/users/records', {
+      const resp = await fetch(PUBLIC_BACKEND_BASE_URL + '/api/collections/jobs/records', {
         method: 'POST',
         mode: 'cors',
         headers: {

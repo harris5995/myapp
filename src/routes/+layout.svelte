@@ -1,5 +1,13 @@
+<!-- Contains the stuff that appears on all webpages -->
+
 <script>
     import "../app.css";
-  </script>
+    import Navbar from "../lib/Navbar.svelte";
   
+</script>
+
+ <Navbar/>
+
   <slot />
+
+ 
