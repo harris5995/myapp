@@ -1,7 +1,7 @@
 <script>
      import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
     export let data;
-    import { getUserId, isLoggedIn,LoggedIn } from '../../../../lib/auth.js';
+    import { getTokenFromLocalStorage, getUserId, isLoggedIn,LoggedIn } from '../../../../lib/auth.js';
     import {goto} from '$app/navigation';
     let formErrors = {};
 
@@ -10,9 +10,9 @@ function postUpdate() {
   }
 
   async function updateJobs(evt) {
-      const id = getUserId()
+    evt.preventDefault()
+    const id = getUserId()
 
-      evt.preventDefault()
 
       const userData = {
           user: id,
@@ -30,11 +30,12 @@ function postUpdate() {
       method: 'PATCH',
       mode: 'cors',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': getTokenFromLocalStorage()
       },
       body: JSON.stringify(userData)
     });
-
+    
     if (resp.status == 200) {
         postUpdate();
       } else {
