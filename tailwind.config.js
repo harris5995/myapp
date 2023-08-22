@@ -18,3 +18,4 @@ export default {
     logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
    },
 };
+

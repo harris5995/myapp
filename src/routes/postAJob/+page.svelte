@@ -7,6 +7,10 @@
     import { goto } from '$app/navigation'
     //import userid, then variable
 
+    //one more, find pre-loaded data
+    //on click
+    // value
+
     function postSignUp() {
       goto('/');
     }
@@ -15,60 +19,6 @@
         const id = getUserId()
 
         evt.preventDefault()
-
-        if (evt.target['title'].value == '' || evt.target['minAnnualCompensation'].value == '' || evt.target['maxAnnualCompensation'].value == ''
-        || evt.target['employer'].value == '' || evt.target['location'].value == '' || evt.target['description'].value == '' || evt.target['requirements'].value == ''
-        || evt.target['applicationInstructions'].value == '')
-        {
-            formErrors['title'] = { message: 'Please do not leave field empty' };
-            formErrors['minAnnualCompensation'] = { message: 'Please do not leave field empty' };
-            formErrors['maxAnnualCompensation'] = { message: 'Please do not leave field empty' };
-            formErrors['employer'] = { message: 'Please do not leave field empty' };
-            formErrors['location'] = { message: 'Please do not leave field empty' };
-            formErrors['description'] = { message: 'Please do not leave field empty' };
-            formErrors['requirements'] = { message: 'Please do not leave field empty' };
-            formErrors['applicationInstructions'] = { message: 'Please do not leave field empty' };
-            return;
-        }
-
-        
-        // if (evt.target['maxAnnualCompensation'].value == '' )
-        // {
-        //     formErrors['maxAnnualCompensation'] = { message: 'Please do not leave field empty' };
-        //     return;
-        // }
-
-        // if (evt.target['employer'].value == '' )
-        // {
-        //     formErrors['employer'] = { message: 'Please do not leave field empty' };
-        //     return;
-        // }
-
-        // if (evt.target['location'].value == '' )
-        // {
-        //     formErrors['location'] = { message: 'Please do not leave field empty' };
-        //     return;
-        // }
-
-        // if (evt.target['description'].value == '' )
-        // {
-        //     formErrors['description'] = { message: 'Please do not leave field empty' };
-        //     return;
-        // }
-
-        // if (evt.target['requirements'].value == '' )
-        // {
-        //     formErrors['requirements'] = { message: 'Please do not leave field empty' };
-        //     return;
-        // }
-
-        // if (evt.target['applicationInstructions'].value == '' )
-        // {
-        //     formErrors['applicationInstructions'] = { message: 'Please do not leave field empty' };
-        //     return;
-        // }
-
-
 
         const userData = {
             user: id,
@@ -110,7 +60,7 @@
               <label class="label" for="title">
                   <span class="label-text">Job Title</span>
               </label>
-              <input type="text" name="title" placeholder="Software Engineer" class="input input-bordered w-full" />
+              <input type="text" name="title" placeholder="Software Engineer" class="input input-bordered w-full" required />
               {#if 'title' in formErrors}
               <label class="label" for="title">
                   <span class="label-text-alt text-red-500">{formErrors['title'].message}</span>
@@ -122,7 +72,7 @@
               <label class="label" for="minAnnualCompensation">
                   <span class="label-text">Minimum Monthly Compensation</span>
               </label>
-              <input type="minAnnualCompensation" name="minAnnualCompensation" placeholder="RM 1000" class="input input-bordered w-full" required />
+              <input type="minAnnualCompensation" name="minAnnualCompensation" placeholder="RM 1000" class="input input-bordered w-full" required  />
               {#if 'minAnnualCompensation' in formErrors}
               <label class="label" for="minAnnualCompensation">
                   <span class="label-text-alt text-red-500">{formErrors['minAnnualCompensation'].message}</span>

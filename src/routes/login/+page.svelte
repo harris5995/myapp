@@ -1,6 +1,9 @@
 <script>
   import { authenticateUser } from "../../lib/auth.js";
   import {goto} from '$app/navigation'
+  // import Alert from "./lib/Alert.svelte"
+
+
 
   // import { createUser } from "../users/new/+page.svelte"
 
@@ -20,30 +23,8 @@
 
 </script>
 
-<!-- <div class="flex justify-center items-center mt-8 ">
-<form on:submit={signIn} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-  <div class="form-control w-full" >
 
-    <label class="label" for="username">
-      <span class="label-text">Username</span>
-    </label>
-    <input type="text" name="username" placeholder="johndoe" class="input input-bordered w-100" />
-    
-    <label class="label" for="password">
-      <span class="label-text">Password</span>
-    </label>
-    <input type="text" name="password" class="input input-bordered w-full" />
-    
-    <div class="form-control w-full mt-4" >
-      <button class="btn btn-md">Submit</button>
-    </div>
-
-  </div> -->
-<!-- 
-</form> 
-</div> -->
-
-<div class="flex  justify-center items-center mt-8">
+<div class="flex justify-center items-center mt-20">
 
   <form on:submit={signIn} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 
@@ -70,3 +51,26 @@
 </div>
 
 
+
+<!-- <div class="flex justify-center items-center mt-8 ">
+<form on:submit={signIn} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <div class="form-control w-full" >
+
+    <label class="label" for="username">
+      <span class="label-text">Username</span>
+    </label>
+    <input type="text" name="username" placeholder="johndoe" class="input input-bordered w-100" />
+    
+    <label class="label" for="password">
+      <span class="label-text">Password</span>
+    </label>
+    <input type="text" name="password" class="input input-bordered w-full" />
+    
+    <div class="form-control w-full mt-4" >
+      <button class="btn btn-md">Submit</button>
+    </div>
+
+  </div> -->
+<!-- 
+</form> 
+</div> -->

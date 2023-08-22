@@ -1,12 +1,13 @@
 <!-- Homepage of website, Displays jobs directory -->
-<script>
+<script lang="ts">
     import humanize from 'humanize-plus';
     export let data;
+
 </script>
 
 <h1 class="text-center text-xl font-bold mt-10">Find Your Next Job</h1>
 
-<div class="overflow-x-auto w-full">
+<div class="overflow-x-auto w-full ml-5 mr-5">
     {#each data.jobs as job}
         <div class="flex flex-col mt-10">
             <div>

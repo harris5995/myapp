@@ -2,9 +2,38 @@
     import SvelteMarkdown from 'svelte-markdown';
     import humanize from 'humanize-plus';
     export let data;
+    import { getUserId} from '../../../lib/auth';
 
-    console.log(data)
+    // import { writeable } from 'svelte/store';
+    // export const userID = writable('')
+
+    // console.log(data.job.user)
+    // async function checkUserID() {
+    //     if (getUserId() == data.job.user) {
+    //         return true;
+    //     }
+
+        //if logged in and same as userid
+
+        //check if userID is same as data.job.id
+        //if yes, then reveal 'edit form' button
+    // }
+
+
+//  same as in data.job.id
 </script>
+
+{#if getUserId() == data.job.user}
+    <div>
+
+        <button class="btn">
+            <a href = '/jobs/{data.job.id}/editForm'>Edit Form</a> 
+           
+        </button>      
+    </div>
+    {/if }
+
+
 
 <div class="mt-10">
     <div class="flex">
