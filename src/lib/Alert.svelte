@@ -1,18 +1,37 @@
-<!-- <script>
-    import {resetTimeout, signUpAlert  } from /alert.js
-</script>
-
-<div class="alert alert-success">
-    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-    <span>Your purchase has been confirmed!</span>
-  </div>
-
-<div class="alert alert-warning">
-    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-    <span>Warning: Invalid email address!</span>
-  </div>
-
-  <div class="alert alert-error">
-    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-    <span>Error! Task failed successfully.</span>
-  </div> -->
+<script>
+    import { alerts } from "../lib/alert.js";
+    import { afterNavigate } from "$app/navigation"
+  
+    let alertType = null
+    let alertMessage = null
+  
+    // setting our local alertType and alertMessage whenever alerts.set Alert is called
+    $: if ($alerts.type && $alerts.message) {
+        alertType = $alerts.type
+        alertMessage = $alerts.message
+    }
+  
+    // reset
+    function resetAlerts() {
+      if ($alerts.message && $alerts.type) {
+        alerts.clearAlert()
+      } else {
+        alertType = $alerts.type
+        alertMessage = $alerts.message
+      }
+    }
+  
+    //Alert stops when webpage is changed
+    afterNavigate(() => resetAlerts())
+  
+  </script>
+  
+  
+  {#if alertMessage}
+    <div class="fixed top-[110px] inset-x-0.5 z-10 container alert alert-{alertType} shadow-lg max-w-sm mx-auto rounded-box flex justify-center animate-pulse">
+      <div class="flex justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="container stroke-current flex-shrink-0 w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span>{alertMessage}</span>
+      </div>
+    </div>
+  {/if}

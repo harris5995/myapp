@@ -1,5 +1,4 @@
 <!-- This file is also the webpage for 'Register' in the Navbar -->
-
 <!-- Contains the functions requires to create a new user -->
 
 <script>
@@ -7,6 +6,7 @@
     import { goto } from '$app/navigation';
     import { authenticateUser } from './../../../lib/auth.js'
     let formErrors = {};
+    import { alerts } from "../../../lib/alert.js"
   
     //After signing up, redirects to /jobs/new
     function postSignUp() {
@@ -29,7 +29,7 @@
         passwordConfirm: evt.target['password-confirmation'].value
       };
   
-      const resp = await fetch(PUBLIC_BACKEND_BASE_URL + '/api/collections/jobs/records', {
+      const resp = await fetch(PUBLIC_BACKEND_BASE_URL + '/api/collections/users/records', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -37,23 +37,25 @@
         },
         body: JSON.stringify(userData)
       });
+
+      console.log(resp)
   
       if (resp.status == 200) {
         const res = await authenticateUser(userData.username, userData.password);
   
         if (res.success) {
+          alerts.setAlert("Registration successful", "success")
           postSignUp();
+        } 
         } else {
-          throw 'Sign up succeeded but authentication failed';
-        }
-      } else {
         const res = await resp.json();
         formErrors = res.data;
+        alerts.setAlert("Registration failed", "error")
       }
     }
   </script>
   
-  <h1 class="text-center text-xl mt-20">Create an Account to Post a Job</h1>
+  <h1 class="text-center text-xl mt-20">Register To Post A Job</h1>
   <div class="text-center">
       <a class="link-hover italic text-xs" href="/login">Already have an account? Click here to login instead.</a>
   </div>

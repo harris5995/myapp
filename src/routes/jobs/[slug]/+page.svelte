@@ -4,36 +4,17 @@
     export let data;
     import { getUserId} from '../../../lib/auth';
 
-    // import { writeable } from 'svelte/store';
-    // export const userID = writable('')
-
-    // console.log(data.job.user)
-    // async function checkUserID() {
-    //     if (getUserId() == data.job.user) {
-    //         return true;
-    //     }
-
-        //if logged in and same as userid
-
-        //check if userID is same as data.job.id
-        //if yes, then reveal 'edit form' button
-    // }
-
-
-//  same as in data.job.id
 </script>
 
+<!-- //check if userID is same as data.job.user
+//if yes, then reveal 'edit form' button -->
 {#if getUserId() == data.job.user}
     <div>
-
         <button class="btn">
-            <a href = '/jobs/{data.job.id}/editForm'>Edit Form</a> 
-           
+            <a href = '/jobs/{data.job.id}/editForm'>Edit Job Post</a> 
         </button>      
     </div>
     {/if }
-
-
 
 <div class="mt-10">
     <div class="flex">

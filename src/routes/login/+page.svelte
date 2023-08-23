@@ -1,15 +1,15 @@
 <script>
   import { authenticateUser } from "../../lib/auth.js";
   import {goto} from '$app/navigation'
-  // import Alert from "./lib/Alert.svelte"
-
-
-
-  // import { createUser } from "../users/new/+page.svelte"
+  import { alerts } from "../../lib/alert.js";
+  import  { statusSpinner } from "../../lib/spinner.js";
+	import Spinner from "../../lib/Spinner.svelte";
 
   async function signIn(evt) {
     evt.preventDefault()
     
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
     const userData = {
       username: evt.target['username'].value,
       password: evt.target['password'].value,
@@ -17,12 +17,17 @@
 
     const res = await authenticateUser(userData.username, userData.password)
     if (res.success) {
-      goto('/');
+       statusSpinner.set(true)
+      alerts.setAlert("Login successful", "success" )
+      goto('/')
+      ;
+    } else {
+      alerts.setAlert( "Incorrect Username or Password, please try again", "warning")
+    }
+
   }
-}
-
+  
 </script>
-
 
 <div class="flex justify-center items-center mt-20">
 
@@ -43,7 +48,7 @@
     </div>
 
     <div class="flex items-center justify-between">
-      <button class="bg-sky-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-control btn">
+      <button class="bg-sky-700 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline form-control btn"><Spinner/>
         Sign In
       </button>
     </div>
@@ -52,25 +57,3 @@
 
 
 
-<!-- <div class="flex justify-center items-center mt-8 ">
-<form on:submit={signIn} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-  <div class="form-control w-full" >
-
-    <label class="label" for="username">
-      <span class="label-text">Username</span>
-    </label>
-    <input type="text" name="username" placeholder="johndoe" class="input input-bordered w-100" />
-    
-    <label class="label" for="password">
-      <span class="label-text">Password</span>
-    </label>
-    <input type="text" name="password" class="input input-bordered w-full" />
-    
-    <div class="form-control w-full mt-4" >
-      <button class="btn btn-md">Submit</button>
-    </div>
-
-  </div> -->
-<!-- 
-</form> 
-</div> -->

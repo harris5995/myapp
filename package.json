@@ -32,6 +32,7 @@
 		"flowbite-svelte": "^0.43.3",
 		"humanize-plus": "^1.8.2",
 		"svelte-markdown": "^0.3.0",
-		"tailwind-merge": "^1.14.0"
+		"tailwind-merge": "^1.14.0",
+		"theme-change": "^2.5.0"
 	}
 }

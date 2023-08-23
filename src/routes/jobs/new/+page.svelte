@@ -3,17 +3,13 @@
 <script>
     import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
     let formErrors = {};
-    import { getUserId } from '../../lib/auth';
+    import { getUserId } from '../../../lib/auth';
     import { goto } from '$app/navigation'
-    //import userid, then variable
-
-    //one more, find pre-loaded data
-    //on click
-    // value
+	import { alerts } from '../../../lib/alert';
 
     function postSignUp() {
-      goto('/');
-    }
+        goto('/');
+    } 
 
     async function createJobs(evt) {
         const id = getUserId()
@@ -42,10 +38,12 @@
       });
   
       if (resp.status == 200) {
+      alerts.setAlert("Job Post Successfully Posted", "success" )
          postSignUp();
         } else {
         const res = await resp.json();
         formErrors = res.data;
+        alerts.setAlert("Job Post Failed To Post", "error")
       }
 }
 </script>

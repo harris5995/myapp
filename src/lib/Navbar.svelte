@@ -3,6 +3,7 @@
 <script>
 	import { LoggedIn } from "./auth";
   import { logOut } from "./auth";
+  import Theme from "./Theme.svelte";
   
 </script> 
 
@@ -19,7 +20,7 @@
       <div>
 
         <button class="flex top-10 w-50 btn right-40">
-          <a href="/postAJob">Create New Job Post</a>
+          <a href="/jobs/new">Create New Job Post</a>
         </button>
 
         <button class="flex top-10 right-10 w-50 btn" on:click={logOut}>Log Out</button>
@@ -39,5 +40,7 @@
     {/if }
 
   </div>
+ <Theme/>
+
 </nav>
 
