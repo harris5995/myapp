@@ -24,7 +24,7 @@
       const res = await authenticateUser(userData.username, userData.password);
       if (res.success) {
         statusSpinner.set(true);
-        alerts.setAlert("Login successful", ALERT_TYPES.SUCCESS);
+        alerts.setAlert("Login successful", "success");
         successAlertVisible = true;
         goto('/');
 

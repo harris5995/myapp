@@ -46,3 +46,15 @@
     width: 100%;
   }
 </style>
+
+
+<!-- <nav class="bg-gray-800 h-16 flex items-center">
+  <a href="#" class="text-white px-4">Home</a>
+  <div class="flex-1"></div>
+  <div class="flex items-center space-x-4">
+    <a href="#" class="text-white border border-white px-4 py-2 rounded">About</a>
+    <a href="#" class="text-white border border-white px-4 py-2 rounded">Services</a>
+    <a href="#" class="text-white border border-white px-4 py-2 rounded">Portfolio</a>
+    <a href="#" class="text-white border border-white px-4 py-2 rounded">Contact</a>
+  </div>
+</nav> -->
