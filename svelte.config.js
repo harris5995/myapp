@@ -7,8 +7,5 @@ const config = {
   },
   preprocess: vitePreprocess()
 };
-export default {
-  preprocess: [vitePreprocess()],
-  config
-};
+export default config
 
