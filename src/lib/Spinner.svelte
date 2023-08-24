@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { statusSpinner } from './spinner';
   
-    let isLoading = $statusSpinner; // Bind the store value directly
+    let isLoading = false; // Bind the store value directly
   
     // Simulate an asynchronous action
     onMount(async () => {

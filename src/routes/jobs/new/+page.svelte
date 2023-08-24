@@ -5,16 +5,24 @@
     let formErrors = {};
     import { getUserId } from '../../../lib/auth';
     import { goto } from '$app/navigation'
-	import { alerts } from '../../../lib/alert';
+	import { alerts } from '../../../lib/alertStore.js';
+    import Spinner from '../../../lib/Spinner.svelte';
+    import { statusSpinner } from '../../../lib/spinner';
 
     function postSignUp() {
         goto('/');
     } 
 
+    let isLoading = false; // Add this line to track whether the button is clicked
+
     async function createJobs(evt) {
         const id = getUserId()
 
         evt.preventDefault()
+
+            // Start the spinner
+        statusSpinner.set(true);
+        isLoading = true;
 
         const userData = {
             user: id,
@@ -44,6 +52,10 @@
         const res = await resp.json();
         formErrors = res.data;
         alerts.setAlert("Job Post Failed To Post", "error")
+
+          // Stop the spinner after the fetch is complete
+        statusSpinner.set(false);
+        isLoading = false;
       }
 }
 </script>
@@ -150,8 +162,14 @@
             {/if}
         </div>
   
-          <div class="form-control w-full mt-4">
-              <button class="btn btn-md">Submit Job Post</button>
+        <div class="form-control w-full mt-4">
+            <!-- Disable the button while spinner is active -->
+            <button class="btn btn-md" disabled={isLoading}>
+              {#if isLoading}
+                <Spinner class="animate-spin h-5 w-5 mr-2" />
+              {/if}
+              Submit Job Post
+            </button>
           </div>
       </form>
   </div>

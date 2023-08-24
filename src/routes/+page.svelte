@@ -5,7 +5,7 @@
 
 </script>
 
-<h1 class="text-center text-xl font-bold mt-10">Find Your Next Job</h1>
+<h1 class="text-center text-xl font-bold">Find Your Next Job</h1>
 
 <div class="overflow-x-auto w-full ml-5 mr-5">
     {#each data.jobs as job}

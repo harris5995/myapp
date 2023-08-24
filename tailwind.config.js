@@ -2,7 +2,13 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {}
+    extend: {
+      backgroundColor: {
+        'green': '#28a745',
+        'orange': '#ffc107',
+        'red': '#dc3545',
+      },
+    },
   },
   plugins: [require('@tailwindcss/typography'), require("daisyui")],
 

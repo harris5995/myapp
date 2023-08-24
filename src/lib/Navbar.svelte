@@ -7,40 +7,42 @@
   
 </script> 
 
-<nav class="flex border-solid outline-cyan-500">
+<nav class= "h-16 flex items-center shadow-md fixed top-0 w-full z-50">
+
+  <a href="/" class=" text-3xl rounded-full px-4 py-2 font-semibold btn-accent">
+    NEXT Jobs DB
+  </a>
   
-  <div>
-    <button class="flex top-10 text-3xl w-50 btn btn-accent btn-lg ml-5">
-      <a href="/">NEXT Jobs DB</a>
-    </button>
-  </div>
+  <div class="flex-1"></div>
 
-  <div>
-    {#if $LoggedIn == true}
-      <div>
+  <div class="flex items-center space-x-4">
 
-        <button class="flex top-10 w-50 btn right-40">
-          <a href="/jobs/new">Create New Job Post</a>
+    <div class="flex space-x-4 items-center">
+      {#if $LoggedIn == true}
+        <a href="/jobs/new" class="text-white border border-white px-4 py-2 rounded-full text-sm btn">
+          Create New Job Post
+        </a>
+        <button on:click={logOut} class="text-white border border-white px-4 py-2 rounded-full text-sm btn">
+          Log Out
         </button>
-
-        <button class="flex top-10 right-10 w-50 btn" on:click={logOut}>Log Out</button>
-
+        <Theme/>
+      {:else}
+        <a href="users/new" class="text-white border border-white px-4 py-2 rounded-full text-sm btn">
+          Register
+        </a>
+        <a href="/login" class="text-white border border-white px-4 py-2 rounded-full text-sm btn">
+          Log In
+        </a>
+        <Theme/>
+      {/if}
     </div>
-
-    {:else}
-      <div>
-         <button class="flex top-10 w-50 btn right-40">
-          <a href="/users/new">Register</a>
-        </button>
-
-        <button class="flex top-10 right-10 w-50 btn">
-          <a href=/login>Log In</a>
-        </button>
-      </div>
-    {/if }
-
-  </div>
- <Theme/>
-
+   
 </nav>
 
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+</style>

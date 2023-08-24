@@ -21,7 +21,7 @@
     });
   </script>
   
-  <label class="swap swap-rotate">
+  <label class="flex-auto swap swap-rotate">
     <input checked={theme === "luxury"} on:click={toggleTheme} type="checkbox" />
     {#if theme === "luxury"}
       <svg class="swap-on fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

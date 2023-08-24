@@ -6,16 +6,26 @@
     import { goto } from '$app/navigation';
     import { authenticateUser } from './../../../lib/auth.js'
     let formErrors = {};
-    import { alerts } from "../../../lib/alert.js"
+    import { alerts } from "../../../lib/alertStore.js"
+    import { statusSpinner } from '../../../lib/spinner.js';
+    import Spinner from '../../../lib/Spinner.svelte';
   
     //After signing up, redirects to /jobs/new
     function postSignUp() {
       goto('/jobs/new');
     }
+
+    let isLoading = false; // Add this line to track whether the button is clicked
     
     //Creates a new user
     async function createUser(evt) {
       evt.preventDefault()
+
+        // Start the spinner
+      isLoading = true;
+
+        // Start the spinner
+    statusSpinner.set(true);
   
       if (evt.target['password'].value != evt.target['password-confirmation'].value) {
         formErrors['password'] = { message: 'Password confirmation does not match' };
@@ -52,10 +62,13 @@
         formErrors = res.data;
         alerts.setAlert("Registration failed", "error")
       }
+
+        // Stop the spinner after the fetch is complete
+        isLoading = false;
     }
   </script>
   
-  <h1 class="text-center text-xl mt-20">Register To Post A Job</h1>
+  <h1 class="text-center text-xl">Register To Post A Job</h1>
   <div class="text-center">
       <a class="link-hover italic text-xs" href="/login">Already have an account? Click here to login instead.</a>
   </div>
@@ -110,7 +123,12 @@
           </div>
   
           <div class="form-control w-full mt-4">
-              <button class="btn btn-md">Create an Account</button>
+            <button class="btn btn-md" disabled={isLoading}> <!-- Disable the button while spinner is active -->
+              {#if isLoading}
+                <Spinner class="animate-spin h-5 w-5 mr-2" />
+              {/if}
+              Create an Account
+            </button>
           </div>
       </form>
   </div>
